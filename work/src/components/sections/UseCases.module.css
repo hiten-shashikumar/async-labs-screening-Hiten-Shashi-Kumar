@@ -1,0 +1,171 @@
+.useCases {
+  /* Slightly tighter top spacing than other sections: the Workflow→UseCases
+     gap reads ~9–12% shorter, which keeps the page calm without dead space. */
+  padding-top: var(--space-12);
+  padding-bottom: var(--section-space);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+/* ---- Explorer: selector / device / explanation ---- */
+
+.explorer {
+  display: grid;
+  grid-template-columns: 14rem minmax(20rem, 22rem) 1fr;
+  align-items: center;
+  gap: var(--space-12);
+  width: 100%;
+}
+
+.selector {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectorButton {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-2);
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  background-color: transparent;
+  text-align: left;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.selectorButton:hover {
+  color: var(--color-text-primary);
+}
+
+.selectorButtonActive {
+  color: var(--color-text-primary);
+  box-shadow: inset 2px 0 0 var(--color-accent-strong);
+}
+
+.selectorNumber {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+  color: var(--color-text-tertiary);
+}
+
+.selectorButtonActive .selectorNumber {
+  color: var(--color-accent-strong);
+}
+
+.selectorLabel {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ---- Device (the dominant object) ---- */
+
+.device {
+  display: flex;
+  justify-content: center;
+  animation: contentIn var(--duration-normal) var(--ease-standard);
+}
+
+.frameWrap {
+  width: min(100%, 22rem);
+}
+
+/* ---- Explanation ---- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: contentIn var(--duration-normal) var(--ease-standard);
+}
+
+.panelTitle {
+  font-size: var(--font-size-h3);
+}
+
+.panelDescription {
+  max-width: 38ch;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+
+@keyframes contentIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1023px) {
+  .explorer {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .selector {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-1);
+    padding: var(--space-1);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .selectorButton {
+    min-height: 2.5rem;
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-radius: calc(var(--radius-sm) - 2px);
+  }
+
+  .selectorButtonActive {
+    background-color: var(--color-accent-strong);
+    color: var(--color-on-accent);
+    box-shadow: none;
+  }
+
+  .selectorButtonActive .selectorNumber {
+    color: var(--color-on-accent);
+  }
+
+  .panel {
+    max-width: 40rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .panelDescription {
+    max-width: none;
+  }
+}
+
+/* Phone: deliberate 2×2 selector — balanced rows instead of a 3+1 wrap. */
+@media (max-width: 767px) {
+  .selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .selectorButton {
+    justify-content: center;
+    width: 100%;
+    min-height: 2.75rem; /* 44px touch target */
+  }
+}

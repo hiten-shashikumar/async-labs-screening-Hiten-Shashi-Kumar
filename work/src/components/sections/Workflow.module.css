@@ -1,0 +1,278 @@
+.workflow {
+  padding-top: var(--space-16);
+  padding-bottom: var(--section-space);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+/* ---- Three-stage grid ---- */
+
+.grid {
+  /* Visual height is fixed on desktop so connectors align to visual centers. */
+  --workflow-visual-height: 15rem;
+
+  display: grid;
+  grid-template-columns: 1fr 4rem 1fr 4rem 1fr;
+  align-items: start;
+  width: 100%;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: opacity var(--duration-normal) var(--ease-standard);
+}
+
+.visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--workflow-visual-height);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+.number {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-label);
+  color: var(--color-accent-strong);
+}
+
+.stageTitle {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-h3);
+}
+
+.stageDescription {
+  margin-top: var(--space-2);
+  max-width: 30ch;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body-sm);
+}
+
+/* ---- Stage visuals ---- */
+
+.sources {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: min(100%, 15rem);
+  font-family: var(--font-family-mono);
+  text-align: left;
+}
+
+.sourceLabel {
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+}
+
+.sourceList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sourceList li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.5625rem;
+}
+
+.sourceDivider {
+  height: 1px;
+  margin-block: 0.25rem;
+  background-color: var(--color-border);
+}
+
+.sourceRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.5625rem;
+}
+
+.sourceMuted {
+  color: var(--color-text-tertiary);
+}
+
+.sourceAccent {
+  color: var(--color-accent-strong);
+}
+
+.app {
+  width: min(100%, 18rem);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  text-align: left;
+}
+
+.appBar {
+  padding: 0.375rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-family-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-secondary);
+}
+
+.appBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 0.75rem;
+}
+
+.appSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.appLabel {
+  font-family: var(--font-family-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-tertiary);
+}
+
+.appChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.appChip {
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 0.5625rem;
+}
+
+.appRow {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-family-mono);
+  font-size: 0.5625rem;
+}
+
+.appTime {
+  color: var(--color-accent-strong);
+}
+
+.displayVisual {
+  width: min(100%, 20rem);
+}
+
+/* ---- Connectors ---- */
+
+.connector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: var(--workflow-visual-height);
+  color: var(--color-text-tertiary);
+  transition: color var(--duration-normal) var(--ease-standard);
+}
+
+.connectorLine {
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+  transition: background-color var(--duration-normal) var(--ease-standard);
+}
+
+/* ---- One interaction: stage hover/focus emphasis ---- */
+
+@media (hover: hover) {
+  .grid:hover .stage:not(:hover) {
+    opacity: 0.82;
+  }
+}
+
+.grid:focus-within .stage:not(:focus-within) {
+  opacity: 0.82;
+}
+
+.stage:hover + .connector,
+.stage:focus-within + .connector,
+.connector:has(+ .stage:hover),
+.connector:has(+ .stage:focus-within) {
+  color: var(--color-accent-strong);
+}
+
+.stage:hover + .connector .connectorLine,
+.stage:focus-within + .connector .connectorLine,
+.connector:has(+ .stage:hover) .connectorLine,
+.connector:has(+ .stage:focus-within) .connectorLine {
+  background-color: var(--color-accent);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1023px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 26rem;
+    margin-inline: auto;
+  }
+
+  .visual {
+    height: auto;
+    min-height: 0;
+  }
+
+  .sources,
+  .app,
+  .displayVisual {
+    margin-inline: auto;
+  }
+
+  .connector {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 100%;
+    margin-block: var(--space-1);
+  }
+
+  .connectorLine {
+    flex: none;
+    width: 1px;
+    height: var(--space-8);
+  }
+
+  .connector svg {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 767px) {
+  .workflow {
+    padding-top: var(--space-12);
+  }
+}

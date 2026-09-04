@@ -1,0 +1,91 @@
+.glance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  width: 100%;
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--color-border);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 40rem;
+  text-align: center;
+}
+
+.title {
+  font-size: var(--font-size-h2);
+}
+
+.description {
+  margin-top: var(--space-1);
+  max-width: var(--content-measure);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.segment {
+  padding: var(--space-2) var(--space-4);
+  min-height: 2.5rem;
+  border: none;
+  border-radius: calc(var(--radius-sm) - 2px);
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.segment:hover {
+  color: var(--color-text-primary);
+}
+
+.segmentActive,
+.segmentActive:hover {
+  background-color: var(--color-accent-strong);
+  color: var(--color-on-accent);
+}
+
+.preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.frameWrap {
+  width: min(100%, 19rem);
+}
+
+.caption {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-body-sm);
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .controls {
+    width: 100%;
+  }
+
+  .segment {
+    flex: 1 1 auto;
+  }
+}

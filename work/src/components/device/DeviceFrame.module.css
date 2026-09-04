@@ -1,0 +1,24 @@
+.frame {
+  background-color: var(--color-device-frame);
+  border-radius: var(--radius-md);
+  padding: 0.625rem 0.625rem 1.25rem;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-device-screen);
+  border-radius: 2px;
+  overflow: hidden;
+  padding: 0.75rem;
+}
+
+.chin {
+  padding-top: 0.5rem;
+  text-align: center;
+  color: rgb(247 246 242 / 0.32);
+  font-size: 0.5625rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.08em;
+}
